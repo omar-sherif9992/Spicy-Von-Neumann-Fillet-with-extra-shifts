@@ -2,14 +2,24 @@ public class Program {
 
     private int beginIndex;
     private int endIndex;
+    private int currentIndex;
     private String name;
     private int totalProgramInstructions;
 
     public Program(int beginIndex, int endIndex, String name) {
         this.beginIndex = beginIndex;
+        this.currentIndex = beginIndex;
         this.endIndex = endIndex;
         this.name = name;
-        this.totalProgramInstructions=beginIndex-endIndex+1;
+        this.totalProgramInstructions = beginIndex - endIndex + 1;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
     }
 
     public int getBeginIndex() {
