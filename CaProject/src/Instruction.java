@@ -2,6 +2,7 @@ public class Instruction {
     private int instructionBinaryValue;
     private String instructionString;
     private final String type;
+    private final int instructionNumber;
     private final String fromProgram;
     private int rd; //r1
     private int rs; //r2
@@ -11,11 +12,12 @@ public class Instruction {
     private int shamt;
     private int opcode;
 
-    public Instruction(int instructionBinaryValue, String instructionString, String type, String fromProgram) {
+    public Instruction(int instructionBinaryValue, String instructionString, String type, String fromProgram,int instructionNumber) {
         this.instructionBinaryValue = instructionBinaryValue;
         this.instructionString = instructionString;
         this.type = type;
         this.fromProgram = fromProgram;
+        this.instructionNumber=instructionNumber;
     }
 
     public void setInstruction(int rd, int rs, int rt, int immediate, int label, int shamt, int opcode) {
@@ -41,7 +43,7 @@ public class Instruction {
     }
 
     public String fetchString() {
-        return instructionString + " type: " + type + "-format  from: " + fromProgram;
+        return instructionNumber+". "+instructionString + " type: " + type + "-format  from: " + fromProgram;
     }
 
     public String decodedString() {

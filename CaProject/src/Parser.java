@@ -113,7 +113,8 @@ public class Parser {
                 default:
                     throw new SyntaxError("Syntax Error");
             }
-            parsedInstructions[i++] = new Instruction(parsed, instruction, type, fileName.replace(".txt", ""));
+            parsedInstructions[i] = new Instruction(parsed, instruction, type, fileName.replace(".txt", ""),i);
+            i++;
         }
 
         return parsedInstructions;
