@@ -67,7 +67,7 @@ public class Instruction {
         }
 
 
-        return "Binary Value: " + Integer.toBinaryString(instructionBinaryValue) + " " + code;
+        return instructionNumber+". "+"Binary Value: " + Integer.toBinaryString(instructionBinaryValue) + " " + code;
     }
 
 

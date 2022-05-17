@@ -14,7 +14,7 @@ public class DataPath {
 
 
     public void fetch() {
-        setCurrentInstruction((Instruction) computer.getMemory().getRows()[0][computer.getProcessor().getProgramCounter().getData()]);
+        setCurrentInstruction((Instruction) computer.getMemory().getRows()[computer.getProcessor().getProgramCounter().getData()]);
         computer.getProcessor().getProgramCounter().setData((computer.getProcessor().getProgramCounter().getData() + 1));
         System.out.println("PC: " + computer.getProcessor().getProgramCounter().getData());
         System.out.println("@ Fetch Stage");
@@ -38,15 +38,15 @@ public class DataPath {
 
     public void mem() {
         if (opcode == 10) {//lw
-            memoryLoad = (int) computer.getMemory().getRows()[1][computer.getProcessor().getAlu().getOutput()];
+            memoryLoad = (int) computer.getMemory().getRows()[computer.getProcessor().getAlu().getOutput()];
             System.out.println("memoryLoad: " + memoryLoad);
         } else if (opcode == 11) {//sw
-            computer.getMemory().getRows()[1][computer.getProcessor().getAlu().getOutput()] = computer.getProcessor().getGprs()[currentInstruction.getRd() - 1].getData();
-            System.out.println("memoryStore: " + Arrays.toString(computer.getMemory().getRows()[computer.getProcessor().getAlu().getOutput()]));
+            computer.getMemory().getRows()[computer.getProcessor().getAlu().getOutput()] = computer.getProcessor().getGprs()[currentInstruction.getRd() - 1].getData();
+            System.out.println("memoryStore: " + computer.getMemory().getRows()[computer.getProcessor().getAlu().getOutput()]);
 
         }
         System.out.println("index: " + computer.getProcessor().getGprs()[currentInstruction.getRd() - 1].getData());
-        System.out.println("data: " + computer.getMemory().getRows()[1][computer.getProcessor().getGprs()[currentInstruction.getRd() - 1].getData()]);
+        System.out.println("data: " + computer.getMemory().getRows()[computer.getProcessor().getGprs()[currentInstruction.getRd() - 1].getData()]);
     }
 
     public void writeBack() {

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Memory {
-    private Object[][] rows;
+    private Object[] rows;
     public static int numberOfTotalInstructions;
     private ArrayList<Program> programs;
 
@@ -14,9 +14,7 @@ public class Memory {
     public Memory(String fileName) throws SyntaxError, FileNotFoundException, MemoryOutOfBoundException {
         programs = new ArrayList<Program>();
         fileManger = new FileManager();
-        this.rows = new Object[2][];
-        this.rows[0] = new Instruction[1024];
-        this.rows[1] = new Integer[1024];
+        this.rows = new Object[2048];
         initializeMemory(fileName);
     }
 
@@ -33,10 +31,10 @@ public class Memory {
         // To Store multiple Programs in memory
         int i = 0;
         for (; i < instructions.length; i++) {
-            rows[0][i + index] = instructions[i];
+            rows[i + index] = instructions[i];
         }
         programs.add(new Program(index, index + i - 1, fileName.replace(".txt", "")));
-        numberOfTotalInstructions = index + i - 1;
+        numberOfTotalInstructions = index + i - 1; // 0 index
 
     }
 
@@ -44,8 +42,28 @@ public class Memory {
         return (Instruction[]) rows[0];
     }
 
-    public Object[][] getRows() {
+    public Object[] getRows() {
         return rows;
+    }
+
+    public void setRows(Object[] rows) {
+        this.rows = rows;
+    }
+
+    public static int getNumberOfTotalInstructions() {
+        return numberOfTotalInstructions;
+    }
+
+    public static void setNumberOfTotalInstructions(int numberOfTotalInstructions) {
+        Memory.numberOfTotalInstructions = numberOfTotalInstructions;
+    }
+
+    public ArrayList<Program> getPrograms() {
+        return programs;
+    }
+
+    public void setPrograms(ArrayList<Program> programs) {
+        this.programs = programs;
     }
 
     public void setRows(Object[][] rows) {
@@ -57,7 +75,7 @@ public class Memory {
     }
 
     public void setNumberOfInstructions(int numberOfInstructions) {
-        this.numberOfTotalInstructions = numberOfInstructions;
+        numberOfTotalInstructions = numberOfInstructions;
     }
 
     public FileManager getFileManger() {
