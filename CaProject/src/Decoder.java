@@ -8,7 +8,6 @@ public class Decoder {
     private int opcode;
 
     public void decode(Instruction currentInstruction) {
-        System.out.println("@ Decode Stage");
         opcode = (currentInstruction.getInstructionBinaryValue() & (0b1111 << 28)) >> 28; //  4 Bits[31-28]
         opcode = opcode & 15;
         rd = (currentInstruction.getInstructionBinaryValue() & (0b11111 << 23)) >> 23; // [27-23] R1
@@ -17,7 +16,9 @@ public class Decoder {
         immediate = currentInstruction.getInstructionBinaryValue() & (0b111111111111111111); // [17-0] Immediate
         label = currentInstruction.getInstructionBinaryValue() & (0b1111111111111111111111111111); // [27-0]
         shamt = currentInstruction.getInstructionBinaryValue() & (0b1111111111111); // [12-0]
-        currentInstruction.setInstruction(rd,rs,rt,immediate,label,shamt,opcode);
-        System.out.println(currentInstruction.decodedString());
+
+        // Setting ID
+        DataPath.ID.setCurrentInstruction( rd, rs, rt, immediate, label, shamt, opcode);
+        System.out.println(DataPath.ID.decodedString());
     }
 }

@@ -24,20 +24,19 @@ public class Parser {
                     parsed |= Integer.parseInt(instructionArr[1].substring(1)) << 23;// R1
                     parsed |= Integer.parseInt(instructionArr[2].substring(1)) << 18;// R2
                     parsed |= Integer.parseInt(instructionArr[3].substring(1)) << 13; // R3
-
                     break;
 
                 case "SUB":
                     parsed |= (0b0001 << 28);//R
-                    parsed |= Integer.parseInt(instructionArr[1].substring(1)) << 23;
-                    parsed |= Integer.parseInt(instructionArr[2].substring(1)) << 18;
-                    parsed |= Integer.parseInt(instructionArr[3].substring(1)) << 13;
+                    parsed |= Integer.parseInt(instructionArr[1].substring(1)) << 23; // R1
+                    parsed |= Integer.parseInt(instructionArr[2].substring(1)) << 18; // R2
+                    parsed |= Integer.parseInt(instructionArr[3].substring(1)) << 13; // R3
                     break;
 
                 case "MULI":
                     parsed |= (0b0010 << 28);
-                    parsed |= Integer.parseInt(instructionArr[1].substring(1)) << 23;
-                    parsed |= Integer.parseInt(instructionArr[2].substring(1)) << 18;
+                    parsed |= Integer.parseInt(instructionArr[1].substring(1)) << 23; // R1
+                    parsed |= Integer.parseInt(instructionArr[2].substring(1)) << 18; // Imm
                     parsed |= Integer.parseInt(instructionArr[3]);
                     type = "I";
                     break;

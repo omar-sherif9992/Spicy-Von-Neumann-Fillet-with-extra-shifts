@@ -66,9 +66,6 @@ public class Memory {
         this.programs = programs;
     }
 
-    public void setRows(Object[][] rows) {
-        this.rows = rows;
-    }
 
     public int getNumberOfInstructions() {
         return numberOfTotalInstructions;
